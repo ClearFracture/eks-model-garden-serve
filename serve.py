@@ -24,15 +24,15 @@ MODEL_ARGS = {
 embedding_model = build_embedding_app(MODEL_ARGS)
 
 # ---------- reranker (extra overrides only here) -------------------------
-hf_overrides = {
-    "architectures": ["Qwen3ForSequenceClassification"],
-    "rename_classifier_to_score": True
-}
+# hf_overrides = {
+#     "architectures": ["Qwen3ForSequenceClassification"],
+#     "rename_classifier_to_score": True
+# }
 
-RERANKER_ARGS = {
-    **MODEL_ARGS,                           # inherit the common flags
-    "task": "score",                        # make sure task is correct
-    "hf-config-overrides": json.dumps(hf_overrides),
-}
+# RERANKER_ARGS = {
+#     **MODEL_ARGS,                           # inherit the common flags
+#     "task": "score",                        # make sure task is correct
+#     "hf-config-overrides": json.dumps(hf_overrides),
+# }
 
-reranker_model = build_reranker_app(RERANKER_ARGS)
+reranker_model = build_reranker_app(MODEL_ARGS)
