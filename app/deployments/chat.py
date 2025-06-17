@@ -38,6 +38,7 @@ class VLLMDeployment:
         chat_template: Optional[str] = None,
     ):
         self.engine = AsyncLLMEngine.from_engine_args(engine_args)
+        self.engine_args = engine_args
         self.response_role = response_role
         self.lora_modules = lora_modules
         self.prompt_adapters = prompt_adapters
@@ -52,7 +53,7 @@ class VLLMDeployment:
     ):
         if not self._openai:
             model_cfg  = await self.engine.get_model_config()
-            model_name = engine_args.served_model_name or engine_args.model
+            model_name = self.engine_args.served_model_name or self.engine_args.model
             models = OpenAIServingModels(
                 engine_client=self.engine,
                 model_config=model_cfg,

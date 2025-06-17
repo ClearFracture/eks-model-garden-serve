@@ -22,6 +22,7 @@ class VLLMRerankerDeployment:
     """OpenAI-compatible /v1/rerank endpoint."""
     def __init__(self, engine_args: AsyncEngineArgs):
         engine_args.task = "rerank"        # set task for the worker pool
+        self.engine_args = engine_args
         self.engine = AsyncLLMEngine.from_engine_args(engine_args)
         self._openai: ServingScores | None = None
 
@@ -30,7 +31,7 @@ class VLLMRerankerDeployment:
     async def rerank(self, request: RerankRequest, raw_request: Request):
         if not self._openai:
             cfg        = await self.engine.get_model_config()
-            model_name = engine_args.served_model_name or engine_args.model
+            model_name = self.engine_args.served_model_name or self.engine_args.model
             models     = OpenAIServingModels(
                 engine_client=self.engine,
                 model_config=cfg,
