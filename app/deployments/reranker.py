@@ -21,7 +21,7 @@ rerank_app = FastAPI()
 class VLLMRerankerDeployment:
     """OpenAI-compatible /v1/rerank endpoint."""
     def __init__(self, engine_args: AsyncEngineArgs):
-        engine_args.task = "rerank"        # set task for the worker pool
+        engine_args.task = "score"        # set task for the worker pool
         self.engine_args = engine_args
         self.engine = AsyncLLMEngine.from_engine_args(engine_args)
         self._openai: ServingScores | None = None

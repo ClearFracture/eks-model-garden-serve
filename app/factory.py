@@ -29,5 +29,5 @@ def build_embedding_app(cli_args: Dict[str, str]) -> serve.Application:
 
 def build_reranker_app(cli_args: Dict[str, str]) -> serve.Application:
     args = _base_engine_args(cli_args)
-    args.task = "rerank"
+    args.task = "score"
     return VLLMRerankerDeployment.bind(args)
