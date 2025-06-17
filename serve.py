@@ -1,6 +1,6 @@
 import os
 from app.factory import (
-    build_chat_app,
+    # build_chat_app,
     build_embedding_app,
     # build_reranker_app,
 )
@@ -17,6 +17,6 @@ MODEL_ARGS = {
 }
 # -------------------------------------------------------------------
 
-chat_model      = build_chat_app(MODEL_ARGS)
+# chat_model      = build_chat_app(MODEL_ARGS)
 embedding_model = build_embedding_app(MODEL_ARGS)
 # reranker_model  = build_reranker_app(MODEL_ARGS)
