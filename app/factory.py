@@ -4,7 +4,7 @@ from ray import serve
 from app.config import parse_vllm_args
 from app.deployments.chat import VLLMDeployment
 from app.deployments.embedding import VLLMEmbeddingDeployment
-from app.deployments.reranker import VLLMRerankerDeployment
+# from app.deployments.reranker import VLLMRerankerDeployment
 
 def _base_engine_args(cli_args: Dict[str, str]):
     args = parse_vllm_args(cli_args)
@@ -27,7 +27,7 @@ def build_embedding_app(cli_args: Dict[str, str]) -> serve.Application:
     args.task = "embed"
     return VLLMEmbeddingDeployment.bind(args)
 
-def build_reranker_app(cli_args: Dict[str, str]) -> serve.Application:
-    args = _base_engine_args(cli_args)
-    args.task = "rerank"
-    return VLLMRerankerDeployment.bind(args)
+# def build_reranker_app(cli_args: Dict[str, str]) -> serve.Application:
+#     args = _base_engine_args(cli_args)
+#     args.task = "rerank"
+#     return VLLMRerankerDeployment.bind(args)
