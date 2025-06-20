@@ -1,0 +1,8 @@
+# Ray & Serving
+ray[serve]
+
+# Large-language-model stack
+vllm==0.8.5.post1
+
+# Misc
+typing_extensions>=4.11
